@@ -67,4 +67,5 @@ a {
 
 .container-fluid {
 	background: #6d7993;
+  padding: 0 auto;
 }
