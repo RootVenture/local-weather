@@ -97,7 +97,7 @@ document.addEventListener(
           request(coord);
         },
         err => {
-          console.err(err);
+          console.error(err);
         }
       );
     })
