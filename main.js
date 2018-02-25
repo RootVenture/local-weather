@@ -5,23 +5,39 @@ const coord = {
 const country = document.querySelector('.country');
 const city = document.querySelector('.city');
 const temp = document.querySelector('.temp');
+const tempMin = document.querySelector('.temp--min');
+const tempMax = document.querySelector('.temp--max');
+const tempUnit = document.querySelector('.unit');
+const cloudy = document.querySelector('.cloudy');
+const windy = document.querySelector('.windy');
+const humidity = document.querySelector('.humidity');
 const description = document.querySelector('.description');
 const icon = document.querySelector('.icon');
 const toggle = document.querySelector('.toggle');
 let weather;
-let unit = 'C';
+let unit = '°C';
 
 function toggleUnit(e) {
+  console.log('clock');
   e.stopPropagation();
   const cVal = weather.main.temp;
-  const tempUnit = unit;
-  if (tempUnit === 'C') {
-    unit = 'F';
+  const cMin = weather.main.temp_min;
+  const cMax = weather.main.temp_max;
+  if (unit === '°C') {
+    unit = '°F';
+    tempUnit.textContent = unit;
     const newVal = Math.round(parseInt(cVal) * 9 / 5 + 32);
-    temp.textContent = `${newVal}°${unit}`;
+    temp.textContent = `${newVal}`;
+    const newMax = Math.round(parseInt(cMax) * 9 / 5 + 32);
+    const newMin = Math.round(parseInt(cMin) * 9 / 5 + 32);
+    tempMax.textContent = `${newMax}`;
+    tempMin.textContent = `${newMin}`;
   } else {
-    unit = 'C';
-    temp.textContent = `${cVal}°${unit}`;
+    unit = '°C';
+    tempUnit.textContent = unit;
+    temp.textContent = `${cVal}`;
+    tempMax.textContent = `${cMax}`;
+    tempMin.textContent = `${cMin}`;
   }
 }
 
@@ -67,18 +83,23 @@ function setIcon(data) {
 }
 
 function setContent() {
-  city.textContent = `${weather.name}, `;
-  country.textContent = weather.sys.country;
-  temp.textContent = `${weather.main.temp}°${unit}`;
+  city.textContent = `${weather.name.toUpperCase()}, `;
+  country.textContent = weather.sys.country.toUpperCase();
+  temp.textContent = `${Math.round(weather.main.temp)}`;
+  tempMin.textContent = `${weather.main.temp_min}`;
+  tempMax.textContent = `${weather.main.temp_max}`;
   description.textContent = weather.weather[0].main;
   setIcon(weather.weather[0].main);
+  cloudy.textContent = `${weather.clouds.all}%`;
+  windy.textContent = `${weather.wind.speed}mph`;
+  humidity.textContent = `${weather.main.humidity}%`;
 }
 
 const request = async coordinates => {
   const response = await fetch(
     `https://fcc-weather-api.glitch.me/api/current?lat=${coordinates.lat}&lon=${coordinates.lng}`,
     {
-      method: 'get',
+      method: 'get'
     }
   ).catch(err => console.err);
   const data = await response.json();
@@ -97,7 +118,7 @@ document.addEventListener(
           request(coord);
         },
         err => {
-          console.error(err);
+          console.err(err);
         }
       );
     })

@@ -9,27 +9,55 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <link rel="stylesheet" href="main.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:400,700">
-  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
 </head>
 
 <body>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-offset-2 col-md-8">
+      <div class="col-md-offset-3 col-md-6">
         <div class="card">
           <div class="card__header">
-            Free C
-            <i class="wi wi-day-sunny"></i>de Camp Weather App
+            Weather App
             <div class="card__content">
-              <p>
-                <span class="city"></span>
-                <span class="country"></span>
-              </p>
-              <p>
-                <a class="toggle" href="#" onclick='toggleUnit()'>
+              <div class="card__summ">
+                <span>
+                  <i class="wi wi-cloud
+  "></i>
+                  <span class="cloudy">0%</span>
+                </span>
+                <span>
+                  <i class="wi wi-strong-wind
+  "></i>
+                  <span class="windy">0mph</span>
+                </span>
+                <span>
+                  <i class="wi wi-humidity
+  "></i>
+                  <span class="humidity">0%</span>
+                </span>
+              </div>
+              <div class="card__details">
+                <div>
                   <span class="temp"></span>
-                </a>
+                </div>
+                <div class="temp__more--data">
+                  <a class="toggle" href="#" onclick='toggleUnit()'>
+                    <span class="unit">°C</span>
+                  </a>
+                  <span>&uarr;
+                    <span class="temp--max">0</span>
+                  </span>
+                  <span>&darr;
+                    <span class="temp--min">0</span>
+                  </span>
+                </div>
+              </div>
+              <p>
+                <span class="city">Please allow location access to fetch latest forecast!
+                </span>
+                <span class="country"></span>
               </p>
               <p>
                 <span class="description"></span>
@@ -45,13 +73,14 @@
             <span>
               <a href="http://www.raywu.me" target="_blank">Raymond Wu</a>
             </span>
+            a
+            <em>FreeCodeCamp</em> Project
           </p>
         </div>
       </div>
     </div>
   </div>
-</body>
-<script src="main.js"></script>
+  <script src="main.js"></script>
 </body>
 
 </html>
